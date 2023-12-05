@@ -6,36 +6,29 @@ const scrapePage = async (url) => {
     const page = await browser.newPage();
     await page.goto(url);
 
-    // Extraer texto
-    const textContent = await page.evaluate(() => {
-      return document.body.innerText;
-    });
+    const titlesWithLinks = await page.evaluate(() => {
+      const titles = Array.from(document.querySelectorAll('h2, h3'));
+      const titlesWithLinks = [];
 
-    // Extraer imágenes
-    const imageUrls = await page.evaluate(() => {
-      const images = Array.from(document.getElementsByTagName('img'));
-      return images.map(img => img.src);
-    });
+      titles.forEach(title => {
+        const titleText = title.innerText.trim();
+        const anchor = title.closest('a');
+        if (anchor) {
+          const link = anchor.href;
+          titlesWithLinks.push({ title: titleText, link });
+        }
+      });
 
-    // Extraer enlaces
-    const links = await page.evaluate(() => {
-      const anchors = Array.from(document.getElementsByTagName('a'));
-      return anchors.map(a => a.href);
+      return titlesWithLinks;
     });
 
     await browser.close();
 
-    return {
-      textContent,
-      imageUrls,
-      links
-    };
+    return titlesWithLinks;
   } catch (error) {
-    console.error('Error during scraping:', error);
+    console.error('Error durante el scraping:', error);
     return null;
   }
 };
-
-
 
 module.exports = scrapePage;
