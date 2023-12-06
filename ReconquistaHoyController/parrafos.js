@@ -6,15 +6,20 @@ const scrapeContent = async (url) => {
     const page = await browser.newPage();
     await page.goto(url);
 
-    const content = await page.evaluate(() => {
+    const contentWithImages = await page.evaluate(() => {
       const mainTextDiv = document.querySelector('.main-text');
       const data = [];
 
       if (mainTextDiv) {
-        const elements = Array.from(mainTextDiv.querySelectorAll('p, h2, h3'));
+        const elements = Array.from(mainTextDiv.querySelectorAll('p, h2, h3, img'));
 
         elements.forEach(element => {
-          data.push(element.innerText.trim());
+          if (element.tagName === 'IMG') {
+            const imgSrc = element.src;
+            data.push(`<img src="${imgSrc}">`);
+          } else {
+            data.push(element.innerText.trim());
+          }
         });
       }
 
@@ -23,7 +28,7 @@ const scrapeContent = async (url) => {
 
     await browser.close();
 
-    return content;
+    return contentWithImages;
   } catch (error) {
     console.error('Error during scraping:', error);
     return null;

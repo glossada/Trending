@@ -1,6 +1,7 @@
 // Ejemplo de uso:
-const scrapePage = require('./Scraping');
-const scrapeParagraphs = require('./parrafos');
+const scrapePage = require('./ReconquistaHoyController/Scraping');
+const scrapeParagraphs = require('./ReconquistaHoyController/parrafos');
+const loadNews = require('./ReconquistaHoyController/loadNews')
 
 //titulos y links
 // const urlToScrape = 'https://www.reconquistahoy.com/ultimas/';
@@ -29,3 +30,21 @@ scrapeParagraphs(urlToScrape)
     }
   })
   .catch(err => console.error('Error:', err));
+
+// loadNews()
+//   .then(news => {
+//     if (news) {
+//       console.log('--- News ---');
+//       for (let i = 0; i < news.length; i++) {
+//         console.log('1- '+news[i].title)
+//       for (let i = 0; i < news[0].paragraph.length; i++) {
+//         console.log(news[0].paragraph[i])
+        
+//       }
+//       console.log('----------------------------');
+//     }
+//     } else {
+//       console.log('No se pudieron obtener las news.');
+//     }
+//   })
+//   .catch(err => console.error('Error:', err));
