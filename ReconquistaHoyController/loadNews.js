@@ -12,6 +12,7 @@ const loadNews = async()=>{
         const news ={
         title:newsTitles[i].title,
         link:newsTitles[i].link,
+        img:newsTitles[i].img,
         paragraph,
         }
         fullNews.push(news);
