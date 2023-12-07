@@ -1,6 +1,6 @@
 const scrapePage = require('./Scraping');
 const scrapeParagraphs = require('./parrafos');
-const RECONQUISTAHOY = require('../URL')
+const RECONQUISTAHOY = require('../../URL')
 
 const loadNews = async()=>{
 

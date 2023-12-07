@@ -1,7 +1,7 @@
 // Ejemplo de uso:
-const scrapePage = require('./ReconquistaHoyController/Scraping');
-const scrapeParagraphs = require('./ReconquistaHoyController/parrafos');
-const loadNews = require('./ReconquistaHoyController/loadNews')
+const scrapePage = require('./src/ReconquistaHoyController/Scraping');
+const scrapeParagraphs = require('./src/ReconquistaHoyController/parrafos');
+const loadNews = require('./src/ReconquistaHoyController/loadNews')
 
 //titulos y links
 const urlToScrape = 'https://www.reconquistahoy.com/ultimas/';
