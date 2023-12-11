@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const excersiseRouter = require('./excersiseRoutes');
+const ReconquistaHoyRouter = require('./ReconquistaHoyRoutes');
 
 
 const router = Router();
 
-router.use('/excersise', excersiseRouter);
+router.use('/recohoy', ReconquistaHoyRouter);
 
 
 
